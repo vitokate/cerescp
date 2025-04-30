@@ -4,7 +4,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 ini_set('log_errors', 1);
-ini_set('error_log', 'php_errors.log');
+ini_set('error_log', __DIR__ . '/php_errors.log');
 
 try {
 	/*
@@ -31,17 +31,25 @@ try {
 	an e-mail to cerescp@gmail.com
 	*/
 
-	extension_loaded('mysqli')
-		or die ("Mysqli extension not loaded. Please verify your PHP configuration.");
+	// Check if we're in the correct directory
+	if (!file_exists(__DIR__ . '/config.php')) {
+		die("Error: config.php not found in " . __DIR__);
+	}
 
-	is_file("./config.php")
-		or die("<a href=\"./install/install.php\">Run Installation Script</a>");
+	// Check mysqli extension
+	if (!extension_loaded('mysqli')) {
+		die("Mysqli extension not loaded. Please verify your PHP configuration.");
+	}
 
+	// Start session
 	session_start();
-	include_once 'config.php'; // loads config variables
-	include_once 'query.php'; // imports queries
-	include_once 'functions.php';
 
+	// Include required files using absolute paths
+	require_once __DIR__ . '/config.php';
+	require_once __DIR__ . '/query.php';
+	require_once __DIR__ . '/functions.php';
+
+	// Initialize session variables
 	$_SESSION[$CONFIG_name.'castles'] = readcastles();
 	$_SESSION[$CONFIG_name.'jobs'] = readjobs();
 
