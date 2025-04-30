@@ -1,0 +1,22 @@
+# Basic configuration
+Options +FollowSymLinks
+DirectoryIndex index.php index.html
+
+# Enable PHP
+AddType application/x-httpd-php .php
+
+# Basic error handling
+php_flag display_errors on
+php_value error_reporting E_ALL
+
+# Allow access to this directory
+Order Allow,Deny
+Allow from all
+
+# Ensure PHP files are processed
+<FilesMatch "\.php$">
+    SetHandler application/x-httpd-php
+</FilesMatch>
+
+# Prevent directory listing
+Options -Indexes 
