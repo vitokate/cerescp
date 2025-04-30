@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<title>Free RO Website</title>
+		<meta name="description" content="" /> 
+		<link type="text/plain" rel="author" href="humans.txt" />
+		<link type="text/css" rel="stylesheet" href="style.css"  media="screen" />
+		<!--[if lt IE 9]>
+		<link type="text/css" rel="stylesheet" href="ie_style.css"  media="screen" />
+        <![endif]-->
+        <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+        <script type="text/javascript" src="slider.js"></script>
+		<script type="text/javascript">
+
+			// Lang Select
+			$(function(){
+				var lang_current = $('#lang_specify');
+				var lang_listing = $('#lang_select');
+
+				function hide_listing(){ lang_listing.hide(); }
+
+				lang_current.mouseover(function(){ lang_listing.show(); });
+				lang_listing.mouseleave(hide_listing);
+				lang_listing.find('li').click(hide_listing);
+			});
+
+
+			// Item Store
+			$(function(){
+				var list  = $('#store-panel .content .list ul');
+				var count = list.find('li').length;
+				var left  = $('#store-panel .arw-left');
+				var right = $('#store-panel .arw-right');
+				var index = 0;
+
+				list.css('width', (75 * list.find('li').length) + 'px' );
+				right.click(function(){
+					index = Math.min( index+1, count - 7 );
+					right.css('opacity', ( index === count - 7 ) ? 0.5 : 1.0 );
+					left.css('opacity', ( index === 0 ) ? 0.5 : 1.0 );
+					list.animate( { marginLeft:-(index*75) + 'px' }, 400 );
+					return false;
+				});
+				left.click(function(){
+					index = Math.max( index-1, 0 );
+					left.css('opacity', ( index === 0 ) ? 0.5 : 1.0 );
+					right.css('opacity', ( index === count - 7 ) ? 0.5 : 1.0 );
+					list.animate( { marginLeft:-(index*75) + 'px' }, 400 );
+					return false;
+				}).css('opacity',0.5);
+			});
+
+
+			// WOE countdown, should be used with a list, use server GMT, display on/off
+			$(function(){
+				var next_woe = new Date();
+				next_woe.setHours(21);
+				next_woe.setMinutes(30);
+
+				setInterval( function(){
+					var time  = next_woe.getTime() - (new Date()).getTime();
+					var sec   = Math.floor(time / 1000) % 60;
+					var min   = Math.floor(time / 1000 / 60) % 60;
+					var hour  = Math.floor(time / 1000 / 60 / 60) % 24;
+					sec       = sec  < 10 ? "0" + sec  : sec ;
+					min       = min  < 10 ? "0" + min  : min ;
+					hour      = hour < 10 ? "0" + hour : hour;
+					$('#woe_countdown').text( hour + ':' + min + ':' + sec );
+				}, 500 );
+			});
+        </script>
+	</head>
+	<body>
+		<div id="main">
+
+			<div id="head">
+				<div class="bar">
+					<div class="info online">
+						Server <strong>online</strong> - 
+						<a href="#">72</a> players - 
+						<strong>WOE</strong> in <span id="woe_countdown">02:12:34</span>
+					</div>
+					<div class="lang">
+                    	<div id="lang_specify">English</div>
+                        <ul id="lang_select">
+                        	<li><a href="#">Deutsh</a></li>
+                            <li><a href="#">Espanol</a></li>
+                        	<li><a href="#">Francais</a></li>
+                            <li><a href="#">Indonesia</a></li>
+                        </ul>
+					</div>
+				</div>
+				<a href="#" class="social twitter"></a>
+				<a href="#" class="social facebook"></a>
+			</div>
+
+			<div id="hnav">
+				<ul>
+                    <li>Home</li>
+                    <li><a href="#">Forum</a></li>
+                    <li><a href="#">Database</a></li>
+                    <li><a href="#">ItemShop</a></li>
+                    <li><a href="#">Credits</a></li>
+                    <li><a href="#">Contact</a></li>
+				</ul>
+			</div>
+
+			<div id="content">
+
+				<div class="middle">
+
+                    <div id="slider" class="panel">
+                        <div class="thumb">
+							<a href="slider/01.png">
+                            	<img src="slider/01_thumb.png" alt="[Ut enim ad minim veniam] Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat" width="106" height="40" />
+                            </a>
+                            <a href="slider/02.png">
+                           		<img src="slider/02_thumb.png" alt="[Lorem ipsum dolor sit amet]  Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." width="106" height="40" />
+                            </a>
+                            <a href="slider/03.png">
+                            	<img src="slider/03_thumb.png" alt="[Duis aute irure dolor !] In reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur" width="106" height="40" />
+                            </a>
+                            <a href="slider/04.png">
+                            	<img src="slider/04_thumb.png" alt="[Excepteur sint occaecat cupidatat] Non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." width="106" height="40" />
+                            </a>
+                        </div>
+                        <div class="result">
+                            <img src="slider/01.png" alt="" width="545" height="190"/>
+                            <img src="slider/01.png" alt="" width="545" height="190"/>
+                            <div class="info">
+                                <h1>Ut enim ad minim veniam</h1>
+                                <p>Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p>
+                            </div>
+                        </div>
+                    </div>
+
+					<div id="lunatic"></div> <!-- Should be better in the div #last-news, but will not work on IE -->
+                    <div id="last-news" class="panel round">
+                        
+                        <h1>Last Updates</h1>
+                        <table>
+                            <tr>
+                                <td class="news">Sed ut perspiciatis unde omnis iste</td>
+                                <td class="date">March 16, 2012</td>
+                            </tr>
+                            <tr class="style">
+                                <td class="news">Natus error sit voluptatem accusantium doloremque laudantium</td>
+                                <td class="date">March 12, 2012</td>
+                            </tr>
+                            <tr>
+                                <td class="news">Otam rem aperiam, eaque ipsa quae ab illo inventore</td>
+                                <td class="date">February 29, 2012</td>
+                            </tr>
+                            <tr class="style">
+                                <td class="news">Nemo enim ipsam voluptatem</td>
+                                <td class="date">February 27, 2012</td>
+    						</tr>
+                            <tr>
+                                <td class="news">Neque porro quisquam est, qui dolorem ipsum</td>
+                                <td class="date">February 14, 2012</td>
+                            </tr>
+							<tr class="style">
+                                <td class="news">Quis autem vel eum iure reprehenderit</td>
+                                <td class="date">February 5, 2012</td>
+                            </tr>
+                        </table>
+                        <div class="extend"><a href="#">View all</a></div>
+                    </div>
+ 
+
+					<div id="spore"></div> <!-- Same that the #lunatic -->
+                    <div id="store-panel" class="panel round">
+                        <h1>Last update in Store</h1>
+						<div class="content">
+                            <a href="#" class="arw-left"></a>
+							<div class="list">
+								<ul>
+									<li>
+										<a href="#"><img width="75" height="100" src="itemshop/01.png" alt="Desc 01" /></a><br/>
+										<div class="info">
+											Soft Feathe<br/>
+											<span class="new_price">29 $</span><br/>
+											<span class="old_price">37 $</span>
+										</div>
+									</li>
+									<li>
+										<a href="#"><img width="75" height="100" src="itemshop/02.png" alt="Desc 02" /></a><br/>
+										<div class="info">
+											Apple<br/>
+											<span class="new_price">5 $</span><br/>
+											<span class="old_price">12 $</span>
+										</div>
+									</li>
+									<li>
+										<a href="#"><img width="75" height="100" src="itemshop/03.png" alt="Desc 03" /></a><br/>
+										<div class="info">
+											Knife<br/>
+											<span class="new_price">54 $</span>
+										</div>
+									</li>
+									<li>
+										<a href="#"><img width="75" height="100" src="itemshop/04.png" alt="Desc 04" /></a><br/>
+										<div class="info">
+											Bandana<br/>
+											<span class="new_price">72 $</span><br/>
+											<span class="old_price">93 $</span>
+										</div>
+									</li>
+									<li>
+										<a href="#"><img width="75" height="100" src="itemshop/05.png" alt="Desc 05" /></a><br/>
+										<div class="info">
+											Coton Shirt<br/>
+											<span class="new_price">67 $</span>
+										</div>
+									</li>
+									<li>
+										<a href="#"><img width="75" height="100" src="itemshop/06.png" alt="Desc 06" /></a><br/>
+										<div class="info">
+											Jellopy<br/>
+											<span class="new_price">32 $</span>
+										</div>
+									</li>
+									<li>
+										<a href="#"><img width="75" height="100" src="itemshop/07.png" alt="Desc 07" /></a><br/>
+										<div class="info">
+											Red Herb<br/>
+											<span class="new_price">41 $</span><br/>
+											<span class="old_price">50 $</span>
+										</div>
+									</li>
+									<li>
+										<a href="#"><img width="75" height="100" src="itemshop/01.png" alt="Desc 01" /></a><br/>
+										<div class="info">
+											Soft Feathe<br/>
+											<span class="new_price">29 $</span><br/>
+											<span class="old_price">37 $</span>
+										</div>
+									</li>
+									<li>
+										<a href="#"><img width="75" height="100" src="itemshop/02.png" alt="Desc 02" /></a><br/>
+										<div class="info">
+											Apple<br/>
+											<span class="new_price">5 $</span><br/>
+											<span class="old_price">12 $</span>
+										</div>
+									</li>
+									<li>
+										<a href="#"><img width="75" height="100" src="itemshop/03.png" alt="Desc 03" /></a><br/>
+										<div class="info">
+											Knife<br/>
+											<span class="new_price">54 $</span>
+										</div>
+									</li>
+									<li>
+										<a href="#"><img width="75" height="100" src="itemshop/04.png" alt="Desc 04" /></a><br/>
+										<div class="info">
+											Bandana<br/>
+											<span class="new_price">72 $</span><br/>
+											<span class="old_price">93 $</span>
+										</div>
+									</li>
+									<li>
+										<a href="#"><img width="75" height="100" src="itemshop/05.png" alt="Desc 05" /></a><br/>
+										<div class="info">
+											Coton Shirt<br/>
+											<span class="new_price">67 $</span>
+										</div>
+									</li>
+									<li>
+										<a href="#"><img width="75" height="100" src="itemshop/06.png" alt="Desc 06" /></a><br/>
+										<div class="info">
+											Jellopy<br/>
+											<span class="new_price">32 $</span>
+										</div>
+									</li>
+									<li>
+										<a href="#"><img width="75" height="100" src="itemshop/07.png" alt="Desc 07" /></a><br/>
+										<div class="info">
+											Red Herb<br/>
+											<span class="new_price">41 $</span><br/>
+											<span class="old_price">50 $</span>
+										</div>
+									</li>
+								</ul>
+							</div>
+							<a href="" class="arw-right"></a>
+						</div>
+						<div class="extend"><a href="#">View all</a></div>
+                    </div>
+
+				</div>
+
+
+
+				<div id="vmenu">
+
+					<a href="#" id="btn-register"></a>
+
+					<div class="panel">
+						<div class="lif"></div>
+						Welcome <strong>Dude</strong>,
+						<ul>
+							<li><a href="#">Account Infos</a></li>
+							<li><a href="#">Generate Signature / Avatar</a></li>
+							<li><a href="#">Character Management</a></li>
+							<li><a href="#">Log off</a></li>
+						</ul>
+						<br/>
+						<div class="vote">
+							Vote for <strong>Points</strong> now:
+                            <div class="vote-list">
+                                <img width="60" height="31" src="images/vote1.png" alt=""/>
+                                <img width="60" height="31" src="images/vote2.png" alt=""/>
+                                <a href="#"><img width="60" height="31" src="images/vote3.png" alt=""/></a>
+                            </div>
+						</div>
+					</div>
+
+
+					<a href="#" id="btn-donate"></a>
+
+					<div class="panel">
+						<div class="goblin"></div>
+						<strong>General Menu</strong>
+						<ul>
+							<li><a href="#">Last updates</a></li>
+							<li><a href="#">Server informations</a></li>
+							<li><a href="#">Server Statistics</a></li>
+							<li><a href="#">Create an account</a></li>
+							<li><a href="#">Download the game</a></li>
+							<li><a href="#">Donate</a></li>
+							<li><a href="#">See online players</a></li>
+							<li><a href="#">Players ranking</a></li>
+						</ul>
+					</div>
+
+				</div>
+
+			</div>
+
+
+			<div id="footer">
+				<div class="info">
+                    <h1>General Informations</h1>
+                    <p><strong>YourServer</strong> is a Ragnarök Online private Server based on a Renewal system with rates <strong>20M/20M/20M</strong> and a level max of <strong>9999</strong> with some unique features like our amazing warper and healer.</p>
+                    <p>You can buy a lot of custom items for «some» dollars to contribute to the server development and our pleasure.</p>
+                    Have fun !
+				</div>
+				<div class="page">
+					<h1>Pages</h1>
+					<table>
+						<tr>
+							<td>
+								<ul>
+									<li><a href="#">Home</a></li>
+									<li><a href="#">Forum</a></li>
+									<li><a href="#">Database</a></li>
+									<li><a href="#">Item Shop</a></li>
+									<li><a href="#">Credits</a></li>
+									<li><a href="#">Contact</a></li>
+								</ul>
+							</td>
+							<td>
+								<ul>
+									<li><a href="#">News</a></li>
+									<li><a href="#">Informations</a></li>
+									<li><a href="#">Register</a></li>
+									<li><a href="#">Download</a></li>
+								</ul>
+							</td>
+							<td>
+								<ul>
+									<li><a href="#">Who is online</a></li>
+									<li><a href="#">Ladder</a></li>
+									<li><a href="#">Server Statistics</a></li>
+								</ul>
+							</td>
+						</tr>
+					</table>	
+				</div>
+			</div>
+
+			<div id="copyright">
+				<div class="controlpanel">Powered by <a href="http://cerescp.sourceforge.net/">CeresCP</a> &copy; 2005 - 2013. All rights reserved.</div>
+				<div class="design">Design by <a href="https://twitter.com/robrowser">KeyWorld</a></div>
+			</div>
+
+		</div>
+	</body>
+</html>

@@ -1,0 +1,19 @@
+/* TEAM */
+	...
+
+
+
+/* THANKS */
+	Web Designer/Integrator : Vincent Thibault (alias KeyWorld)
+	Contact: key.robrowser@gmail.com
+	Twitter: @robrowser
+	From: Paris, France
+
+	Buttons designed inspired by Elendil / Nergal.
+
+
+/* SITE */
+	Last update:2012/20/04
+	Language: English
+	Doctype:HTML5
+	IDE: Photoshop, Notepad++
