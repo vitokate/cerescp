@@ -1,42 +1,49 @@
 <?php
-/*
-Ceres Control Panel
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
-This is a control panel program for eAthena and other Athena SQL based servers
-Copyright (C) 2005 by Beowulf and Dekamaster
+try {
+	/*
+	Ceres Control Panel
 
-This program is free software; you can redistribute it and/or
-modify it under the terms of the GNU General Public License
-as published by the Free Software Foundation; either version 2
-of the License, or (at your option) any later version.
+	This is a control panel program for eAthena and other Athena SQL based servers
+	Copyright (C) 2005 by Beowulf and Dekamaster
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+	This program is free software; you can redistribute it and/or
+	modify it under the terms of the GNU General Public License
+	as published by the Free Software Foundation; either version 2
+	of the License, or (at your option) any later version.
 
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
 
-To contact any of the authors about special permissions send
-an e-mail to cerescp@gmail.com
-*/
+	You should have received a copy of the GNU General Public License
+	along with this program; if not, write to the Free Software
+	Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-extension_loaded('mysqli')
-	or die ("Mysqli extension not loaded. Please verify your PHP configuration.");
+	To contact any of the authors about special permissions send
+	an e-mail to cerescp@gmail.com
+	*/
 
-is_file("./config.php")
-	or die("<a href=\"./install/install.php\">Run Installation Script</a>");
+	extension_loaded('mysqli')
+		or die ("Mysqli extension not loaded. Please verify your PHP configuration.");
 
-session_start();
-include_once 'config.php'; // loads config variables
-include_once 'query.php'; // imports queries
-include_once 'functions.php';
+	is_file("./config.php")
+		or die("<a href=\"./install/install.php\">Run Installation Script</a>");
 
-$_SESSION[$CONFIG_name.'castles'] = readcastles();
-$_SESSION[$CONFIG_name.'jobs'] = readjobs();
+	session_start();
+	include_once 'config.php'; // loads config variables
+	include_once 'query.php'; // imports queries
+	include_once 'functions.php';
 
+	$_SESSION[$CONFIG_name.'castles'] = readcastles();
+	$_SESSION[$CONFIG_name.'jobs'] = readjobs();
+
+} catch (Exception $e) {
+	die("Error: " . $e->getMessage());
+}
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
